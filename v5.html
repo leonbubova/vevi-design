@@ -265,7 +265,7 @@
 
     .hero-content {
       position: relative;
-      padding: 0 1.5rem 3rem;
+      padding: 0 1.5rem 2rem;
       max-width: 1200px;
       margin: 0 auto;
       width: 100%;
@@ -274,10 +274,11 @@
     .hero-portrait {
       position: absolute;
       left: 50%;
-      top: 15%;
+      top: 12%;
       width: 85vw;
       max-width: 360px;
       aspect-ratio: 3 / 4;
+      max-height: 52svh;
       border-radius: 18px 18px 4px 18px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.4);
@@ -355,14 +356,21 @@
     }
 
     .hero-bottom {
-      display: flex;
+      display: none;
       justify-content: space-between;
       align-items: end;
       margin-top: 1rem;
       gap: 2rem;
     }
 
+    .hero-scroll-mobile {
+      position: absolute;
+      right: 1.5rem;
+      bottom: 4.2rem;
+    }
+
     .hero-tagline {
+      display: none;
       font-size: 0.82rem;
       color: rgba(245, 237, 227, 0.6);
       letter-spacing: 0.2em;
@@ -457,8 +465,8 @@
     }
 
     /* ---- SHARED ---- */
-    .pad { padding: 3.5rem 1.5rem; }
-    .pad-lg { padding: 5rem 1.5rem; }
+    .pad { padding: 2.25rem 1.5rem; }
+    .pad-lg { padding: 3rem 1.5rem; }
     .inner { max-width: 1100px; margin: 0 auto; }
 
     .eyebrow {
@@ -602,8 +610,8 @@
     }
 
     .karte-hero-img {
-      width: 120px;
-      height: 120px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 0 8px 30px rgba(0,0,0,0.3);
@@ -620,18 +628,19 @@
     @media (min-width: 768px) {
       .karte-hero-img {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: -1rem;
+        right: 6rem;
         margin: 0;
-        width: 130px;
-        height: 130px;
+        width: 150px;
+        height: 150px;
+        transform: rotate(-20deg);
       }
     }
 
     @media (min-width: 1024px) {
       .karte-hero-img {
-        width: 150px;
-        height: 150px;
+        width: 170px;
+        height: 170px;
       }
     }
 
@@ -1002,6 +1011,9 @@
       .pad-lg { padding: 8rem 2.5rem; }
 
       .hero-content { padding: 0 2.5rem 4rem; }
+      .hero-bottom { display: flex; }
+      .hero-tagline { display: block; }
+      .hero-scroll-mobile { display: none; }
 
       .nav-links { display: flex; }
       .nav-cta { display: inline-block; }
@@ -1216,6 +1228,10 @@
           <div class="steam-wisp"></div>
         </div>
       </div>
+      <a href="#story" class="hero-scroll hero-scroll-mobile">
+        <span class="line"></span>
+        scroll
+      </a>
       <div class="hero-bottom">
         <p class="hero-tagline">vegan<br>healthy<br>sustainable</p>
         <a href="#story" class="hero-scroll">

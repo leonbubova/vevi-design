@@ -1074,11 +1074,15 @@
     .steam-wrap {
       position: absolute;
       bottom: 100%;
-      left: 40%;
+      left: 28%;
       width: 280px;
       height: 350px;
       pointer-events: none;
       z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+      .steam-wrap { left: 40%; }
     }
 
     .steam-wisp {

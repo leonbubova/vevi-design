@@ -1,7 +1,6 @@
-# Personal files
+# Personal / raw files
 signal-*
-*.jpeg
-*.jpg
+vevi-insta-*
 
 # Claude Code
 .claude/

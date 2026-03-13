@@ -980,11 +980,11 @@
     /* ---- COFFEE STEAM ---- */
     .steam-wrap {
       position: absolute;
-      bottom: 30%;
+      bottom: 18%;
       left: 50%;
       transform: translateX(-50%);
-      width: 200px;
-      height: 260px;
+      width: 320px;
+      height: 350px;
       pointer-events: none;
       z-index: 2;
     }
@@ -993,22 +993,23 @@
       position: absolute;
       bottom: 0;
       border-radius: 50%;
-      background: rgba(198,123,92,0.15);
-      filter: blur(12px);
+      background: rgba(245,237,227,0.35);
+      filter: blur(18px);
       opacity: 0;
-      animation: steam 5s ease-in-out infinite;
+      animation: steam 6s ease-in-out infinite;
     }
 
-    .steam-wisp:nth-child(1) { left: 25%; width: 28px; height: 40px; animation-delay: 0s; }
-    .steam-wisp:nth-child(2) { left: 50%; width: 22px; height: 34px; animation-delay: 1.2s; }
-    .steam-wisp:nth-child(3) { left: 40%; width: 32px; height: 44px; animation-delay: 2.5s; }
-    .steam-wisp:nth-child(4) { left: 65%; width: 20px; height: 30px; animation-delay: 3.6s; }
+    .steam-wisp:nth-child(1) { left: 20%; width: 50px; height: 70px; animation-delay: 0s; }
+    .steam-wisp:nth-child(2) { left: 50%; width: 40px; height: 60px; animation-delay: 1.5s; }
+    .steam-wisp:nth-child(3) { left: 35%; width: 55px; height: 80px; animation-delay: 3s; }
+    .steam-wisp:nth-child(4) { left: 65%; width: 35px; height: 55px; animation-delay: 4.2s; }
 
     @keyframes steam {
-      0%   { opacity: 0; transform: translateY(0) scaleX(1); }
-      15%  { opacity: 0.6; }
-      50%  { opacity: 0.3; transform: translateY(-100px) scaleX(1.4); }
-      100% { opacity: 0; transform: translateY(-200px) scaleX(2); }
+      0%   { opacity: 0; transform: translateY(0) scaleX(1) translateX(0); }
+      15%  { opacity: 0.7; }
+      40%  { opacity: 0.5; transform: translateY(-80px) scaleX(1.3) translateX(10px); }
+      70%  { opacity: 0.2; transform: translateY(-180px) scaleX(1.8) translateX(-8px); }
+      100% { opacity: 0; transform: translateY(-280px) scaleX(2.2) translateX(5px); }
     }
 
     /* ---- WARM COLOR SHIFT OVERLAY ---- */
@@ -1026,7 +1027,7 @@
     .write-in {
       display: inline-block;
       clip-path: inset(0 100% 0 0);
-      transition: clip-path 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: clip-path 1.2s steps(20, end);
     }
 
     .write-in.vis {
@@ -1034,12 +1035,13 @@
     }
 
     .write-in::after {
-      content: '|';
-      font-weight: 300;
-      animation: blink-cursor 0.6s step-end infinite;
-      margin-left: 2px;
+      content: '\2588';
+      font-size: 0.85em;
+      color: var(--terracotta);
+      animation: blink-cursor 0.5s step-end infinite;
+      margin-left: 3px;
       opacity: 0;
-      transition: opacity 0.3s;
+      transition: opacity 0.15s;
     }
 
     .write-in.vis::after {
@@ -1048,13 +1050,16 @@
 
     .write-in.done::after {
       opacity: 0;
+      transition: opacity 0.6s;
     }
 
     .write-in-slow {
-      transition-duration: 1.4s;
+      transition-duration: 2.2s;
+      transition-timing-function: steps(30, end);
     }
 
     @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
@@ -1518,7 +1523,7 @@
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('vis');
-          const dur = e.target.classList.contains('write-in-slow') ? 1800 : 1100;
+          const dur = e.target.classList.contains('write-in-slow') ? 2800 : 1600;
           setTimeout(() => e.target.classList.add('done'), dur);
           writeObs.unobserve(e.target);
         }
@@ -1533,7 +1538,7 @@
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrollPct = Math.min(scrollY / (document.body.scrollHeight - innerHeight), 1);
-          warmOverlay.style.opacity = scrollPct * 0.06;
+          warmOverlay.style.opacity = scrollPct * 0.12;
           ticking = false;
         });
         ticking = true;

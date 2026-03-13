@@ -1,0 +1,10 @@
+# Personal files
+signal-*
+*.jpeg
+*.jpg
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store

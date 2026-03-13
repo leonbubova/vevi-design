@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vevi — Veganes Vintage Café | Köln</title>
+  <meta name="description" content="vevi — veganes Vintage Café im Belgischen Viertel, Köln. vegan. healthy. sustainable.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --warm-cream: #FDF6EE;
+      --soft-brown: #8B6F5E;
+      --deep-brown: #5C3D2E;
+      --accent-terracotta: #C4816B;
+      --accent-sage: #A8B5A0;
+      --accent-sage-light: #D4DDD0;
+      --text-dark: #3A2E28;
+      --text-light: #7A6B63;
+      --white: #FFFFFF;
+      --off-white: #FAF7F4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(253, 246, 238, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(139, 111, 94, 0.1);
+      transition: box-shadow 0.3s;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(92, 61, 46, 0.08);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--deep-brown);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--deep-brown); }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--deep-brown);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--warm-cream);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--deep-brown);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover { color: var(--accent-terracotta); }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-sage-light) 0%, transparent 70%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 129, 107, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--accent-sage);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-sage);
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      color: var(--deep-brown);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-light);
+      letter-spacing: 0.3em;
+      text-transform: lowercase;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--deep-brown);
+      color: var(--warm-cream);
+      text-decoration: none;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.4s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(196, 129, 107, 0.3);
+    }
+
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s;
+    }
+
+    .hero-cta:hover svg { transform: translateX(4px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 5rem 1.5rem; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent-terracotta);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--deep-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--accent-terracotta);
+    }
+
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--accent-terracotta);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      color: var(--text-light);
+      font-size: 1rem;
+    }
+
+    .about-text .signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--deep-brown);
+      margin-top: 2rem;
+    }
+
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--accent-sage-light) 0%, var(--accent-terracotta) 100%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::after {
+      content: 'Foto von Jess im Café';
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      color: var(--white);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+    }
+
+    /* ---- VALUES ---- */
+    .values-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s;
+      border: 1px solid rgba(139, 111, 94, 0.06);
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(92, 61, 46, 0.08);
+    }
+
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-icon.green { background: var(--accent-sage-light); }
+    .value-icon.brown { background: rgba(196, 129, 107, 0.15); }
+    .value-icon.cream { background: rgba(139, 111, 94, 0.1); }
+
+    .value-card h3 {
+      font-size: 1.3rem;
+      color: var(--deep-brown);
+      margin-bottom: 0.75rem;
+    }
+
+    .value-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* ---- MENU SECTION ---- */
+    .menu-section {
+      background: var(--deep-brown);
+      color: var(--warm-cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 129, 107, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .menu-section .section-label { color: var(--accent-sage); }
+    .menu-section .section-title { color: var(--warm-cream); }
+    .menu-section .section-title em { color: var(--accent-terracotta); }
+    .menu-section .divider { background: var(--accent-sage); }
+
+    .menu-note {
+      color: rgba(253, 246, 238, 0.6);
+      font-size: 0.9rem;
+      margin-bottom: 3rem;
+      max-width: 500px;
+    }
+
+    .menu-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .menu-category h3 {
+      font-size: 1.1rem;
+      color: var(--accent-sage);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(253, 246, 238, 0.1);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(253, 246, 238, 0.05);
+    }
+
+    .menu-item-name {
+      font-size: 1rem;
+      color: var(--warm-cream);
+      font-weight: 400;
+    }
+
+    .menu-item-desc {
+      font-size: 0.8rem;
+      color: rgba(253, 246, 238, 0.5);
+      margin-top: 0.25rem;
+    }
+
+    .menu-item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--accent-terracotta);
+      white-space: nowrap;
+      margin-left: 1.5rem;
+    }
+
+    /* ---- HOURS ---- */
+    .hours { background: var(--white); }
+
+    .hours-card {
+      background: var(--off-white);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 500px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(139, 111, 94, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+
+    .hours-day { font-weight: 500; color: var(--text-dark); }
+
+    .hours-time { color: var(--accent-terracotta); font-weight: 400; }
+
+    .hours-time.closed {
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .hours-today {
+      background: rgba(196, 129, 107, 0.08);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin: 0 -1rem;
+    }
+
+    /* ---- COMMUNITY ---- */
+    .community-text {
+      color: var(--text-light);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
+
+    .partners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .partner-tag {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: var(--white);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      border: 1px solid rgba(139, 111, 94, 0.1);
+      transition: all 0.3s;
+    }
+
+    .partner-tag:hover {
+      background: var(--accent-sage-light);
+      color: var(--deep-brown);
+      border-color: var(--accent-sage);
+    }
+
+    /* ---- SERVICES ---- */
+    .services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .service-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.25rem 1rem;
+      background: var(--off-white);
+      border-radius: 14px;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      font-weight: 400;
+    }
+
+    .service-pill span { font-size: 1.2rem; }
+
+    /* ---- CONTACT / FOOTER ---- */
+    .contact {
+      background: var(--deep-brown);
+      color: var(--warm-cream);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+
+    .contact .section-title { color: var(--warm-cream); }
+    .contact .section-title em { color: var(--accent-terracotta); }
+    .contact .section-label { color: var(--accent-sage); }
+
+    .contact-info {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(253, 246, 238, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--accent-terracotta);
+    }
+
+    .contact-item a {
+      color: rgba(253, 246, 238, 0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-item a:hover { color: var(--warm-cream); }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      justify-content: center;
+    }
+
+    .social-link {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(253, 246, 238, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--warm-cream);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--accent-terracotta);
+      border-color: var(--accent-terracotta);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg { width: 20px; height: 20px; }
+
+    /* ---- PAYMENT ---- */
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+
+    .payment-badge {
+      padding: 0.35rem 0.85rem;
+      background: rgba(253, 246, 238, 0.08);
+      border-radius: 6px;
+      font-size: 0.7rem;
+      color: rgba(253, 246, 238, 0.5);
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: #3A2518;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: rgba(253, 246, 238, 0.4);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--warm-cream); }
+
+    .footer-copy {
+      color: rgba(253, 246, 238, 0.3);
+      font-size: 0.75rem;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (min-width: 768px) {
+      section { padding: 7rem 2rem; }
+
+      .nav-links {
+        display: flex;
+      }
+
+      .hamburger, .mobile-menu { display: none !important; }
+
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .contact-info {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2.5rem;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero { min-height: 100vh; }
+
+      .values-grid { gap: 2rem; }
+
+      .value-card { padding: 3rem 2.5rem; }
+
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    /* ---- ANIMATIONS ---- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Impressum Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(58, 46, 40, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--warm-cream);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 550px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal h2 {
+      font-size: 1.8rem;
+      color: var(--deep-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal p, .modal address {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-style: normal;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .modal-close:hover { background: rgba(139, 111, 94, 0.1); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">vevi</a>
+      <ul class="nav-links">
+        <li><a href="#about">Über uns</a></li>
+        <li><a href="#menu">Speisekarte</a></li>
+        <li><a href="#hours">Zeiten</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMenu()">Über uns</a>
+    <a href="#menu" onclick="closeMenu()">Speisekarte</a>
+    <a href="#hours" onclick="closeMenu()">Öffnungszeiten</a>
+    <a href="#community" onclick="closeMenu()">Community</a>
+    <a href="#contact" onclick="closeMenu()">Kontakt</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-badge">Belgisches Viertel, Köln</span>
+    <h1>vevi</h1>
+    <p class="hero-tagline">vegan · healthy · sustainable</p>
+    <a href="#menu" class="hero-cta">
+      Entdecke unser Menü
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+    <div class="scroll-hint">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p class="section-label">Unsere Geschichte</p>
+          <h2 class="section-title">Ein Ort, der <em>von Herzen</em> kommt</h2>
+          <div class="divider"></div>
+          <p>Getreu dem Motto <strong>vegan. healthy. sustainable.</strong> entstand das vevi — ein veganes Vintage Café inmitten des Schmelztiegels, dem Belgischen Viertel.</p>
+          <p>Ich heiße dich herzlich willkommen in der fulminanten Welt von Jess. Wie viele Kölner gehöre ich auch zu den Zugezogenen. 2010 bis 2020 lebte ich im Stadtteil Nippes. 2022 bin ich endlich ins Rathenau Viertel gezogen — ganz nah an meinem Lieblingsveedel, dem Belgischen.</p>
+          <p>Seit 2010 lebe ich nun ausschließlich vegan. Ich habe viele Erfahrungen gesammelt und es war nicht immer einfach. Ich lebe aus Überzeugung vegan. Nach nun mehr als 10 Jahren mit meinem Accessoires-Label <em>andallthatjess</em>, ist es nun an der Zeit, meiner Leidenschaft für die vegane Ernährung Ausdruck zu verleihen.</p>
+          <p>Ich möchte meinen Gästen zeigen, wieso ein veganes Leben glückselig macht. Ich freue mich auf jeden Einzelnen, der in meine Welt eintaucht.</p>
+          <p class="signature">— eure Jess</p>
+        </div>
+        <div class="about-image fade-up"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section id="values">
+    <div class="section-inner">
+      <p class="section-label fade-up">Wofür wir stehen</p>
+      <h2 class="section-title fade-up">Mehr als <em>nur Essen</em></h2>
+      <div class="divider fade-up"></div>
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <div class="value-icon green">&#x1F331;</div>
+          <h3>100% Vegan</h3>
+          <p>Alles auf unserer Karte ist rein pflanzlich — aus Überzeugung und mit Leidenschaft zubereitet.</p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-icon brown">&#x2665;</div>
+          <h3>Healthy</h3>
+          <p>Bewusste Ernährung, die schmeckt. Frische Zutaten, sorgfältig ausgewählt für Körper und Seele.</p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-icon cream">&#x267B;</div>
+          <h3>Sustainable</h3>
+          <p>Nachhaltigkeit ist kein Trend, sondern unsere Grundhaltung — von den Zutaten bis zur Einrichtung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="section-inner">
+      <p class="section-label fade-up">Was wir anbieten</p>
+      <h2 class="section-title fade-up">Unsere <em>Speisekarte</em></h2>
+      <div class="divider fade-up"></div>
+      <p class="menu-note fade-up">Eine kleine Auswahl unserer Favoriten. Die volle Karte gibt's vor Ort!</p>
+      <div class="menu-grid">
+        <div class="menu-category fade-up">
+          <h3>Frühstück & Bowls</h3>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Holy Cado</div>
+              <div class="menu-item-desc">Ciabatta mit Avocado & Topping</div>
+            </div>
+            <div class="menu-item-price">8,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Mola Stülle</div>
+              <div class="menu-item-desc">Brot mit Aufstrich & Beilagen</div>
+            </div>
+            <div class="menu-item-price">7,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Mandel-Frischkäse Ciabatta</div>
+              <div class="menu-item-desc">mit getrockneten Tomaten</div>
+            </div>
+            <div class="menu-item-price">7,00 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Quinoa-Curry Bowl</div>
+              <div class="menu-item-desc">Frisch & wärmend</div>
+            </div>
+            <div class="menu-item-price">9,50 &euro;</div>
+          </div>
+        </div>
+        <div class="menu-category fade-up">
+          <h3>Kuchen & Süßes</h3>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Schoko-Erdnuss Torte</div>
+              <div class="menu-item-desc">Hauseigenes Rezept</div>
+            </div>
+            <div class="menu-item-price">5,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Carrot Cake</div>
+              <div class="menu-item-desc">Saftig & aromatisch</div>
+            </div>
+            <div class="menu-item-price">5,00 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Banana Bread</div>
+              <div class="menu-item-desc">Frisch gebacken</div>
+            </div>
+            <div class="menu-item-price">4,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Tagesangebot</div>
+              <div class="menu-item-desc">Wechselnd — frag bei uns nach!</div>
+            </div>
+            <div class="menu-item-price">variiert</div>
+          </div>
+        </div>
+        <div class="menu-category fade-up">
+          <h3>Getränke</h3>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Schamong Kaffee</div>
+              <div class="menu-item-desc">Kölner Rösterei — fair & bio</div>
+            </div>
+            <div class="menu-item-price">3,00 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Cappuccino</div>
+              <div class="menu-item-desc">mit Hafermilch</div>
+            </div>
+            <div class="menu-item-price">3,80 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Matcha Latte</div>
+              <div class="menu-item-desc">Bio-Matcha, Hafermilch</div>
+            </div>
+            <div class="menu-item-price">4,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Hausgemachte Limo</div>
+              <div class="menu-item-desc">Saisonal wechselnd</div>
+            </div>
+            <div class="menu-item-price">4,00 &euro;</div>
+          </div>
+        </div>
+        <div class="menu-category fade-up">
+          <h3>Warmes</h3>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Suppe des Tages</div>
+              <div class="menu-item-desc">Täglich frisch gekocht</div>
+            </div>
+            <div class="menu-item-price">6,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Curry mit Reis</div>
+              <div class="menu-item-desc">Cremig & würzig</div>
+            </div>
+            <div class="menu-item-price">10,50 &euro;</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Wraps</div>
+              <div class="menu-item-desc">Frische Füllung nach Wahl</div>
+            </div>
+            <div class="menu-item-price">8,00 &euro;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS -->
+  <section class="hours" id="hours">
+    <div class="section-inner">
+      <p class="section-label fade-up">Besuche uns</p>
+      <h2 class="section-title fade-up">Unsere <em>Öffnungszeiten</em></h2>
+      <div class="divider fade-up"></div>
+      <div class="hours-card fade-up">
+        <div class="hours-row" data-day="1">
+          <span class="hours-day">Montag</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+        <div class="hours-row" data-day="2">
+          <span class="hours-day">Dienstag</span>
+          <span class="hours-time closed">Geschlossen</span>
+        </div>
+        <div class="hours-row" data-day="3">
+          <span class="hours-day">Mittwoch</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+        <div class="hours-row" data-day="4">
+          <span class="hours-day">Donnerstag</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+        <div class="hours-row" data-day="5">
+          <span class="hours-day">Freitag</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+        <div class="hours-row" data-day="6">
+          <span class="hours-day">Samstag</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+        <div class="hours-row" data-day="0">
+          <span class="hours-day">Sonntag</span>
+          <span class="hours-time">11:00 – 18:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community">
+    <div class="section-inner">
+      <p class="section-label fade-up">Freundeskreis</p>
+      <h2 class="section-title fade-up">Unsere <em>Community</em></h2>
+      <div class="divider fade-up"></div>
+      <p class="community-text fade-up">vevi ist ein Gemeinschaftsprojekt. Mein kleiner Kosmos. Nur mit der Unterstützung meiner Familie, Freunde & all meinen Herzensmenschen konnte vevi zum Leben erweckt werden. Alles was ihr im vevi sehen, fühlen, schmecken und hören könnt, stammt von uns allen.</p>
+      <div class="partners fade-up">
+        <span class="partner-tag">Paula Roesch Design</span>
+        <span class="partner-tag">Schamong Kaffeerösterei</span>
+        <span class="partner-tag">Kölner Künstler*innen</span>
+        <span class="partner-tag">Lokale Handwerker*innen</span>
+        <span class="partner-tag">Familie & Freunde</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-inner">
+      <p class="section-label fade-up">Unser Angebot</p>
+      <h2 class="section-title fade-up">Das gibt's <em>bei uns</em></h2>
+      <div class="divider fade-up"></div>
+      <div class="services-grid fade-up">
+        <div class="service-pill"><span>&#x2615;</span> Essen zum Mitnehmen</div>
+        <div class="service-pill"><span>&#x1F33F;</span> Außenbereich</div>
+        <div class="service-pill"><span>&#x1F4F6;</span> Kostenloses WLAN</div>
+        <div class="service-pill"><span>&#x1F436;</span> Haustiere willkommen</div>
+        <div class="service-pill"><span>&#x1F3C6;</span> Private Events</div>
+        <div class="service-pill"><span>&#x1F697;</span> Parkplätze</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-inner">
+      <p class="section-label">Komm vorbei</p>
+      <h2 class="section-title">Wir freuen uns <em>auf dich</em></h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Brüsseler Str. 29, 50674 Köln</span>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+4922129856678">0221 298 566 78</a>
+        </div>
+        <div class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:hallo@platzhalter.de">hallo@platzhalter.de</a>
+        </div>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+      <div class="payment-methods">
+        <span class="payment-badge">Barzahlung</span>
+        <span class="payment-badge">EC-Karte</span>
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MasterCard</span>
+        <span class="payment-badge">AMEX</span>
+        <span class="payment-badge">Apple Pay</span>
+        <span class="payment-badge">Kontaktlos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#" onclick="openImpressum(event)">Impressum</a>
+        <a href="#" onclick="openDatenschutz(event)">Datenschutz</a>
+      </div>
+      <p class="footer-copy">&copy; 2024 vevi Café — Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <!-- IMPRESSUM MODAL -->
+  <div class="modal-overlay" id="impressumModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('impressumModal')">&times;</button>
+      <h2>Impressum</h2>
+      <p><strong>Platzhalter GmbH</strong></p>
+      <address>
+        Jessica Musterfrau<br>
+        Brüsseler Str. 29<br>
+        50674 Köln<br>
+        Deutschland
+      </address>
+      <p>
+        <strong>Telefon:</strong> +49 221 298 566 78<br>
+        <strong>E-Mail:</strong> hallo@platzhalter.de
+      </p>
+      <p>
+        <strong>USt-IdNr.:</strong> DE000000000<br>
+        <strong>Handelsregister:</strong> Amtsgericht Köln, HRB 00000
+      </p>
+      <p><strong>Verantwortlich für den Inhalt (gem. § 55 Abs. 2 RStV):</strong><br>
+        Jessica Musterfrau, Anschrift wie oben.
+      </p>
+    </div>
+  </div>
+
+  <!-- DATENSCHUTZ MODAL -->
+  <div class="modal-overlay" id="datenschutzModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('datenschutzModal')">&times;</button>
+      <h2>Datenschutz</h2>
+      <p>Diese Website erhebt und speichert keine personenbezogenen Daten. Es werden keine Cookies gesetzt und keine Analyse-Tools eingesetzt.</p>
+      <p>Bei Fragen zum Datenschutz wende dich bitte an: <strong>hallo@platzhalter.de</strong></p>
+      <p><em>Platzhalter — bitte mit den tatsächlichen Datenschutzhinweisen ersetzen.</em></p>
+    </div>
+  </div>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Highlight today's hours
+    const today = new Date().getDay();
+    const todayRow = document.querySelector(`.hours-row[data-day="${today}"]`);
+    if (todayRow) todayRow.classList.add('hours-today');
+
+    // Scroll animations
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Modals
+    function openImpressum(e) { e.preventDefault(); document.getElementById('impressumModal').classList.add('open'); }
+    function openDatenschutz(e) { e.preventDefault(); document.getElementById('datenschutzModal').classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
